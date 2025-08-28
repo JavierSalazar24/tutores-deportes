@@ -12,7 +12,8 @@ export const useFinances = ({ deudas, abonos, pagos }) => {
     playerName: `${d.jugador.nombre} ${d.jugador.apellido_p} ${d.jugador.apellido_m}`,
     description: `${d.costo_categoria.concepto_cobro.nombre} (${d.costo_categoria.categoria.nombre})`,
     date: dayjs(d.fecha_pago).format('DD/MM/YYYY'),
-    amount: formatearMonedaMXN(d.monto_final)
+    amount: formatearMonedaMXN(d.monto_final),
+    restant: formatearMonedaMXN(d.saldo_restante)
   })
 
   const normalizeAbono = (a) => ({
@@ -30,7 +31,8 @@ export const useFinances = ({ deudas, abonos, pagos }) => {
     playerName: `${p.jugador.nombre} ${p.jugador.apellido_p} ${p.jugador.apellido_m}`,
     description: `${p.costo_categoria.concepto_cobro.nombre} (${p.costo_categoria.categoria.nombre})`,
     date: dayjs(p.fecha_pago).format('DD/MM/YYYY'),
-    amount: formatearMonedaMXN(p.monto_final)
+    amount: formatearMonedaMXN(p.monto_final),
+    restant: formatearMonedaMXN(p.saldo_restante)
   })
 
   const financesByTab = useMemo(

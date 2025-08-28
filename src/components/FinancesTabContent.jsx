@@ -16,7 +16,7 @@ export const FinancesTabContent = ({
     : filteredFinances
 
   const icon =
-    activeTab === 'deudas' ? '⚠️' : activeTab === 'pagos' ? '✅' : '💳'
+    activeTab === 'deudas' ? '⚠️' : activeTab === 'pagos' ? '✅' : '💵'
 
   const colorClass =
     activeTab === 'deudas'
@@ -60,9 +60,26 @@ export const FinancesTabContent = ({
                 </div>
               </div>
               <div className='text-right'>
-                <p className={`text-lg font-bold ${colorClass}`}>
-                  {record.amount}
-                </p>
+                {activeTab === 'deudas' ? (
+                  <>
+                    <p className='text-gray-600 text-sm'>
+                      Monto:{' '}
+                      <span className={`text-lg font-bold ${colorClass}`}>
+                        {record.amount}
+                      </span>
+                    </p>
+                    <p className='text-gray-600 text-sm'>
+                      Saldo restante:{' '}
+                      <span className={`text-lg font-bold ${colorClass}`}>
+                        {record.restant}
+                      </span>
+                    </p>
+                  </>
+                ) : (
+                  <p className={`text-lg font-bold ${colorClass}`}>
+                    {record.amount}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -79,9 +96,20 @@ export const FinancesTabContent = ({
                 <p className='text-sm text-gray-500'>{record.date}</p>
               </div>
               <div className='text-center mt-3'>
-                <p className={`text-base font-bold ${colorClass}`}>
-                  Costo de {record.amount}
-                </p>
+                {activeTab === 'deudas' ? (
+                  <>
+                    <p className={`text-sm font-bold ${colorClass}`}>
+                      Monto de {record.amount}
+                    </p>
+                    <p className={`text-sm font-bold ${colorClass}`}>
+                      Saldo restante de {record.restant}
+                    </p>
+                  </>
+                ) : (
+                  <p className={`text-base font-bold ${colorClass}`}>
+                    Costo de {record.amount}
+                  </p>
+                )}
               </div>
             </div>
           </div>

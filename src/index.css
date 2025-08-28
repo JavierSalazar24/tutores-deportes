@@ -44,3 +44,10 @@
     transform: rotate(1turn);
   }
 }
+
+@media screen and (max-width: 415px) {
+  .fc .fc-toolbar {
+    display: block !important;
+    text-align: center !important;
+  }
+}

@@ -41,16 +41,17 @@ export const usePlayerRegistration = ({ firma, onSubmit }) => {
     if (currentStep < totalSteps) {
       if (
         (currentStep === 1 &&
-          !formData.nombre &&
-          !formData.apellido_p &&
-          !formData.apellido_m &&
-          !formData.genero) ||
+          (!formData.nombre ||
+            !formData.apellido_p ||
+            !formData.apellido_m ||
+            !formData.genero ||
+            !formData.foto)) ||
         (currentStep === 2 &&
-          !formData.direccion &&
-          !formData.telefono &&
-          !formData.fecha_nacimiento &&
-          !formData.curp) ||
-        (currentStep === 3 && !formData.padecimientos && !formData.alergias)
+          (!formData.direccion ||
+            !formData.telefono ||
+            !formData.fecha_nacimiento ||
+            !formData.curp)) ||
+        (currentStep === 3 && (!formData.padecimientos || !formData.alergias))
       ) {
         toast.warning('Por favor completa los campos obligatorios')
         return
@@ -81,7 +82,7 @@ export const usePlayerRegistration = ({ firma, onSubmit }) => {
 
     try {
       if (firma) {
-        await onSubmit(formData) // <- espera la promesa
+        await onSubmit(formData)
         setCurrentStep(1)
         setFormData({
           nombre: '',

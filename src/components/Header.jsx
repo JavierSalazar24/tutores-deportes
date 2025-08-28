@@ -23,14 +23,18 @@ const Header = ({ temporada }) => {
           <div className='hidden lg:flex items-center space-x-6'>
             <div className='text-right'>
               <p className='text-sm font-medium text-gray-900'>
-                {temporada.nombre}
+                {temporada?.nombre || 'Sin temporada actual'}
               </p>
-              <p className='text-xs text-gray-500'>En curso</p>
+              <p className='text-xs text-gray-500'>
+                {temporada?.nombre ? 'En curso' : ''}
+              </p>
             </div>
             <div className='w-px h-8 bg-gray-300'></div>
             <div className='text-right'>
               <p className='text-sm font-medium text-gray-900'>Fundado 1985</p>
-              <p className='text-xs text-gray-500'>39 años</p>
+              <p className='text-xs text-gray-500'>
+                {new Date().getFullYear() - 2000} años
+              </p>
             </div>
           </div>
         </div>

@@ -29,9 +29,9 @@ export const useJugadores = () => {
       toast.success('Registro agregado')
       Swal.close()
     },
-    onError: () => {
+    onError: (err) => {
       Swal.close()
-      throw new Error('Error al crear jugador')
+      throw new Error(err.message)
     }
   })
 

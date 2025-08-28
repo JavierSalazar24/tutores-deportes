@@ -29,7 +29,9 @@ const Finances = ({
         <div className='bg-white rounded-lg shadow-lg p-6'>
           <div className='flex items-center justify-between'>
             <div>
-              <p className='text-sm font-medium text-gray-600'>Total Deudas</p>
+              <p className='text-sm font-medium text-gray-600'>
+                Total Deudas (saldo restante)
+              </p>
               <p className='text-2xl font-bold text-red-600'>
                 {formatearMonedaMXN(totalDeudas)}
               </p>
@@ -46,7 +48,7 @@ const Finances = ({
                 {formatearMonedaMXN(totalAbonos)}
               </p>
             </div>
-            <div className='text-3xl'>💳</div>
+            <div className='text-3xl'>💵</div>
           </div>
         </div>
 

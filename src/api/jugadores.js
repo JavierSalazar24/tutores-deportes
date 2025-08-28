@@ -36,12 +36,7 @@ export const createJugador = async (data) => {
     const response = await apiClientForm.post('jugadores-web', formData)
     return response.data
   } catch (error) {
-    const msg =
-      error?.response?.data?.message ||
-      error?.response?.data?.error ||
-      error?.message ||
-      'Error al agregar registro'
-    console.error('Error al agregar registro:', msg)
-    throw new Error(msg)
+    console.error('Error al agregar el registro:', error.response.data.message)
+    throw new Error(error.response.data.message)
   }
 }
