@@ -1,6 +1,6 @@
 import { toast } from 'sonner'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { createJugador } from '../api/jugadores'
+import { createJugador, updateJugador } from '../api/jugadores'
 import Swal from 'sweetalert2'
 import { useRef, useState } from 'react'
 import { base64ToFile } from '../utils/base64ToFile'
@@ -26,7 +26,18 @@ export const useJugadores = () => {
     mutationFn: createJugador,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['data-jugadores'] })
-      toast.success('Registro agregado')
+      Swal.close()
+    },
+    onError: (err) => {
+      Swal.close()
+      throw new Error(err.message)
+    }
+  })
+
+  const updateMutation = useMutation({
+    mutationFn: updateJugador,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['data-jugadores'] })
       Swal.close()
     },
     onError: (err) => {
@@ -71,8 +82,35 @@ export const useJugadores = () => {
     }
   }
 
+  const onUpdate = async (data) => {
+    Swal.fire({
+      title:
+        '<h2 style="font-family: "sans-serif";">Guardando registro, por favor espere...</h2>',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    })
+
+    try {
+      const res = await updateMutation.mutateAsync(data)
+      await queryClient.invalidateQueries({ queryKey: ['data-jugadores'] })
+      toast.success('¡Jugador actualizado exitosamente!')
+      return res
+    } catch (err) {
+      const msg = err?.message || 'Error al crear jugador'
+      toast.error(msg)
+      throw err
+    } finally {
+      Swal.close()
+    }
+  }
+
   return {
     onSubmit,
+    onUpdate,
     firma,
     sigCanvas,
     clearSignature,

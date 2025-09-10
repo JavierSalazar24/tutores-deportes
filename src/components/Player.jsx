@@ -36,6 +36,37 @@ export const Player = ({ player }) => {
           <span className='font-medium'>Ingreso:</span>
           <span>{dayjs(player.created_at).format('DD/MM/YYYY')}</span>
         </div>
+
+        <div className='flex justify-between mt-6 gap-2'>
+          <span
+            className={`px-2 rounded-md text-white ${
+              player.curp_jugador_url ? 'bg-green-500' : 'bg-red-500'
+            }`}
+          >
+            CURP
+          </span>
+          <span
+            className={`px-2 rounded-md text-white ${
+              player.ine_url ? 'bg-green-500' : 'bg-red-500'
+            }`}
+          >
+            INE
+          </span>
+          <span
+            className={`px-2 rounded-md text-white ${
+              player.acta_nacimiento_url ? 'bg-green-500' : 'bg-red-500'
+            }`}
+          >
+            Acta de nac.
+          </span>
+          <span
+            className={`px-2 rounded-md text-white ${
+              player.comprobante_domicilio_url ? 'bg-green-500' : 'bg-red-500'
+            }`}
+          >
+            Comprobante
+          </span>
+        </div>
       </div>
     </div>
   )

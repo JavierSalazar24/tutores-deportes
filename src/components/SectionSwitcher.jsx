@@ -4,8 +4,14 @@ import Finances from './Finances'
 import Calendar from './Calendar'
 
 export const SectionSwitcher = ({ section, data, jugadoresHook }) => {
-  const { onSubmit, firma, sigCanvas, clearSignature, saveSignature } =
-    jugadoresHook
+  const {
+    onSubmit,
+    onUpdate,
+    firma,
+    sigCanvas,
+    clearSignature,
+    saveSignature
+  } = jugadoresHook
 
   switch (section) {
     case 'register':
@@ -19,7 +25,7 @@ export const SectionSwitcher = ({ section, data, jugadoresHook }) => {
         />
       )
     case 'players-list':
-      return <PlayersList players={data.jugadores} />
+      return <PlayersList players={data.jugadores} handleSubmit={onUpdate} />
     case 'calendar':
       return <Calendar partidos={data.partidos} />
     case 'finances':
