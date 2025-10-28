@@ -37,7 +37,7 @@ export const Player = ({ player }) => {
           <span>{dayjs(player.created_at).format('DD/MM/YYYY')}</span>
         </div>
 
-        <div className='flex justify-between mt-6 gap-2'>
+        <div className='flex justify-between mt-6 gap-2 flex-wrap'>
           <span
             className={`px-2 rounded-md text-white ${
               player.curp_jugador_url ? 'bg-green-500' : 'bg-red-500'
