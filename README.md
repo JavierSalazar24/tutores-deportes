@@ -100,3 +100,41 @@ La versión de tutores **no** incluye módulos de operación interna (bancos, ga
 ## 🆘 Soporte
 
 Si tienes dudas, encuentras un error o necesitas ayuda con tu cuenta, por favor comunícate con el **administrador del club** o el equipo de soporte indicado por tu organización.
+
+---
+
+## 🚀 Instalación y uso (Backend)
+
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+
+Para añadir migraciones y seeds:
+
+```bash
+php artisan migrate --seed
+```
+
+Para correr en local:
+
+```bash
+php artisan serve
+```
+
+---
+
+## Licencia
+
+Este software puede ser licenciado por cliente con **código fuente completo**.  
+El cliente es responsable del hosting, datos y uso del sistema.
+
+Para más información o personalizaciones, contacta a: contacto@arcanix.com.mx
+
+---
+
+## Autor
+
+Desarrollado por **Arcanix**.  
+Soporte técnico o consultas: contacto@arcanix.com.mx — ARCANIX WEB: https://arcanix.com.mx/
