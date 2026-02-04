@@ -1,7 +1,7 @@
 import { usePlayerRegistration } from '../hook/usePlayerRegistration'
 import { StepContent } from './StepContent'
 
-const totalSteps = 5
+const totalSteps = 6
 
 const PlayerRegistration = ({
   onSubmit,
@@ -14,11 +14,12 @@ const PlayerRegistration = ({
     currentStep,
     formData,
     handleChange,
+    handleCheckboxChange,
     handleNext,
     handlePrev,
     handleFileChange,
     handleSubmit
-  } = usePlayerRegistration({ firma, onSubmit })
+  } = usePlayerRegistration({ firma, onSubmit, totalSteps })
 
   return (
     <div>
@@ -50,6 +51,7 @@ const PlayerRegistration = ({
           formData={formData}
           handleChange={handleChange}
           handleFileChange={handleFileChange}
+          handleCheckboxChange={handleCheckboxChange}
           sigCanvas={sigCanvas}
           clearSignature={clearSignature}
           saveSignature={saveSignature}
@@ -61,7 +63,7 @@ const PlayerRegistration = ({
             type='button'
             onClick={handlePrev}
             disabled={currentStep === 1}
-            className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+            className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 cursor-pointer ${
               currentStep === 1
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'

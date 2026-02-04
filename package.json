@@ -1,7 +1,7 @@
 {
   "name": "deportes-web",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,11 +12,14 @@
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.19",
     "@fullcalendar/react": "^6.1.19",
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/toolbar": "^3.12.0",
     "@tailwindcss/vite": "^4.1.11",
     "@tanstack/react-query": "^5.84.2",
     "axios": "^1.11.0",
     "dayjs": "^1.11.13",
     "lucide-react": "^0.542.0",
+    "pdfjs-dist": "^3.4.120",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-signature-canvas": "^1.1.0-alpha.2",

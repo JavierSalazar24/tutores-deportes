@@ -3,7 +3,7 @@ import { apiClient } from './configAxios'
 // Iniciar sesión
 export const loginRequest = async (credentials) => {
   try {
-    const response = await apiClient.post('login', credentials)
+    const response = await apiClient.post('login-tutor', credentials)
     return response.data
   } catch (error) {
     throw new Error(error.response.data.message)

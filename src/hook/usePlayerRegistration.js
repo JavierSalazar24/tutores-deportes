@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { toast } from 'sonner'
 
-export const usePlayerRegistration = ({ firma, onSubmit }) => {
-  const totalSteps = 5
+export const usePlayerRegistration = ({ firma, onSubmit, totalSteps }) => {
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
     // Información Personal
@@ -26,7 +25,10 @@ export const usePlayerRegistration = ({ firma, onSubmit }) => {
     curp_jugador: null,
     acta_nacimiento: null,
     ine: null,
-    comprobante_domicilio: null
+    comprobante_domicilio: null,
+
+    // Avisos y Consentimientos
+    terminos: false
   })
 
   const handleChange = (e) => {
@@ -34,6 +36,14 @@ export const usePlayerRegistration = ({ firma, onSubmit }) => {
     setFormData({
       ...formData,
       [name]: value
+    })
+  }
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target
+    setFormData({
+      ...formData,
+      [name]: checked
     })
   }
 
@@ -51,7 +61,14 @@ export const usePlayerRegistration = ({ firma, onSubmit }) => {
             !formData.telefono ||
             !formData.fecha_nacimiento ||
             !formData.curp)) ||
-        (currentStep === 3 && (!formData.padecimientos || !formData.alergias))
+        (currentStep === 3 &&
+          (!formData.padecimientos || !formData.alergias)) ||
+        (currentStep === 4 &&
+          (!formData.curp_jugador ||
+            !formData.acta_nacimiento ||
+            !formData.ine ||
+            !formData.comprobante_domicilio)) ||
+        (currentStep === 5 && !formData.terminos)
       ) {
         toast.warning('Por favor completa los campos obligatorios')
         return
@@ -99,7 +116,8 @@ export const usePlayerRegistration = ({ firma, onSubmit }) => {
           curp_jugador: null,
           acta_nacimiento: null,
           ine: null,
-          comprobante_domicilio: null
+          comprobante_domicilio: null,
+          terminos: false
         })
       }
     } catch (error) {
@@ -111,6 +129,7 @@ export const usePlayerRegistration = ({ firma, onSubmit }) => {
     currentStep,
     formData,
     handleChange,
+    handleCheckboxChange,
     handleNext,
     handlePrev,
     handleFileChange,

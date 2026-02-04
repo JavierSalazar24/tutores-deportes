@@ -26,7 +26,7 @@ export default function App() {
 
       <AuthGate>
         <DataGate>
-          {(data) => (
+          {(data, banners, isBannersLoading) => (
             <div className='min-h-screen bg-gray-50'>
               <Toaster richColors position='bottom-right' />
 
@@ -37,7 +37,11 @@ export default function App() {
                 navItems={navItems}
               />
 
-              {data.banners > 0 && <SponsorsCarousel sponsors={data.banners} />}
+              {isBannersLoading ? (
+                <Loading />
+              ) : banners.length > 0 ? (
+                <SponsorsCarousel sponsors={banners} />
+              ) : null}
 
               <main className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pb-6 sm:pb-8 lg:pb-12 pt-5'>
                 <div className='bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-100 overflow-hidden p-4 sm:p-6 lg:p-8'>
